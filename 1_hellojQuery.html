@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+
+		<title>Hello, jQuery</title>
+		<script>
+			// onload = function () {
+			$(document).ready(function () {
+				// document.getElementsByTagName('h1')[0].styel.color = 'tomato';
+				$('h1').css('color', 'tomato');
+				$('h2').eq(0).css('backgroundColor', 'powderblue');
+				$('h2').eq(1).css('color', 'red');
+				$('div').click(function () {
+					$(this).html('정신 없넹');
+				});
+				$('.small').mouseover(function () {
+					$('.big').show(2000, function () {
+						// alert('나왔다!');
+					}); // slow | fast | 2000 ms
+				});
+
+				$('.small').mouseout(function () {
+					$('.big').hide(2000);
+				});
+			});
+			// };
+
+			// function justDo(obj) {
+			// 	obj.innerHTML = '이렇게 바뀌나?';
+			// }
+
+			function disp() {
+				document.getElementsByClassName('big')[0].style.display = 'block';
+			}
+			function hide() {
+				document.getElementsByClassName('big')[0].style.display = 'none';
+			}
+		</script>
+		<style>
+			.big {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>hello, jQuery</h1>
+		<h2>첫번째 h2</h2>
+		<h2>두번째 h2</h2>
+		<!-- <div onclick="justDo(this)">
+      jQuery는 자바스크립트 코딩을 좀더 빠르고 편하게 사용할 수 있도록 하는
+      라이브러리입니다.
+    </div> -->
+		<div>
+			jQuery는 자바스크립트 코딩을 좀더 빠르고 편하게 사용할 수 있도록 하는
+			라이브러리입니다.
+		</div>
+		<div>
+			<img src="img/donka.jpg" alt="돈카츠" class="small" width="25%" />
+		</div>
+		<div>
+			<img src="img/dduk.jpg" alt="떡볶이" class="big" width="50%" />
+		</div>
+		<!-- <div>
+			<img
+				src="img/donka.jpg"
+				alt="돈카츠"
+				width="25%"
+				onmouseover="disp()"
+				onmouseout="hide()" />
+		</div>
+		<div>
+			<img src="img/dduk.jpg" alt="떡볶이" class="big" width="50%" />
+		</div> -->
+	</body>
+</html>
