@@ -59,7 +59,21 @@
 				$('#btn2').click(function () {
 					$('#div2').empty(); // => 안에 있는 하위 태그만 삭제
 				});
+
+				function myFunc() {
+					alert('myfunc');
+				}
+
+				myFunc2();
 			});
+
+			function myFunc() {
+				alert('myfunc');
+			}
+
+			function myFunc2() {
+				alert('myfunc2');
+			}
 		</script>
 	</head>
 	<body>
@@ -82,7 +96,10 @@
 				<li>리스트10</li>
 				<li>리스트11</li>
 				<li><a href="#">리스트12</a></li>
-				<li>리스트13</li>
+				<li>
+					<span><a href="#">링크</a></span
+					>리스트13
+				</li>
 				<li>리스트14</li>
 			</ul>
 
@@ -125,6 +142,7 @@
 					<p>paragraph2</p>
 				</div>
 			</div>
+			<button onclick="myFunc()">btn</button>
 		</div>
 	</body>
 </html>

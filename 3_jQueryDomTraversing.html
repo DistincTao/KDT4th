@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<title>Document</title>
+		<script>
+			$(function () {
+				console.log($('.tr td').eq(0).html());
+				//3번에 접근 : next() <= nextElementSibling()
+				console.log($('.tr td').eq(0).next().next().html());
+				console.log($('.tr').eq(0).children().eq(0).next().next().html());
+
+				// 4번에 접근 : prev() <= previousElementSibling()
+				console.log($('#td5').prev().html());
+				// 1번에서 -> 4로 접근
+				console.log($('.tr td').eq(0).parent().next().children().html());
+				console.log($('.tr td').eq(0).parent().next().children().eq(0).html());
+				console.log($('.tr td').eq(3).html());
+
+				// parent()
+				// children()
+				console.log($('#td5').parent().next().children().next().next().html());
+				console.log($('#td5').parent().next().children().eq(2).html());
+
+				console.log($('.tr td').parent());
+				console.log($('.tr td').parents());
+				console.log($('.tr td').parentsUntil('body'));
+
+				// 1번의 배경색을 노란색으로 바꾸기
+				$('.tr td').eq(0).css('backgroundColor', 'yellow');
+				$('.tr td:first').css('font-weight', 'bold');
+
+				// 테이블의 width : 200px
+				$('table').eq(0).css('width', '200px');
+
+				// 5번 글자 앞에 a라는 글자 진하게 넣기
+				$('#td5').prepend('<b>a</b>');
+
+				// 9번의 배경색을 파란색으로 바꾸고 글씨 색을 하얀색으로 바꾸기
+				$('#td9').css('backgroundColor', 'blue').css('color', 'white');
+				//=> 한꺼번에 한요소에 대하여 CSS 속성 적용 시 {"속성1" : "값1", "속성2" : "값2", ....} 사용
+				$('#td9').css({ fontSize: '20px', fontWeight: 'bold' });
+
+				// 8번을 100으로 바꾸기
+				$('#td9').prev().html(100);
+			});
+		</script>
+	</head>
+	<body>
+		<table border="1">
+			<tr class="tr">
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			<tr class="tr">
+				<td>4</td>
+				<td id="td5">5</td>
+				<td>6</td>
+			</tr>
+			<tr class="tr">
+				<td>7</td>
+				<td>8</td>
+				<td id="td9">9</td>
+			</tr>
+		</table>
+	</body>
+</html>

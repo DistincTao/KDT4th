@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>jQuery를 이용하여 동적으로 행을 추가, 삭제 하는 테이블 만들기</title>
+		<script src="js/jquery-3.7.1.min.js"></script>
+	</head>
+	<script>
+		$(function () {
+			// $('.addBtn').click(function () {
+			$('table').on('click', '.addBtn', function () {
+				let copyTr = $(this).parent().parent(); // 복사할 행을 copyTr에 할당
+				console.log(copyTr);
+				let newTr = copyTr.clone();
+				clearContent($(newTr).children());
+				newTr.insertAfter(copyTr);
+			});
+
+			$('table').on('click', '.remBtn', function () {
+				if ($('tr').length > 2) {
+					$(this).parent().parent().remove();
+				} else {
+					alert('삭제 그만!');
+				}
+			});
+
+			function clearContent(tdArr) {
+				$.each(tdArr, function (index, item) {
+					$(item).children().val('');
+				});
+			}
+
+			function JSON(productName, productQty, productCost) {
+				this.productName = productName;
+				this.productQty = productQty;
+				this.productCost = productCost;
+			}
+
+			let jsonArr = [];
+			$('.submit').on('click', '#submit', function () {
+				let nameArr = [];
+				let qtyArr = [];
+				let costArr = [];
+
+				$('input').each(function (index, item) {
+					// console.log(index, item.value);
+					if (item.name == 'productName') {
+						nameArr.push(item.value);
+					}
+					if (item.name == 'productQty') {
+						qtyArr.push(item.value);
+					}
+					if (item.name == 'productCost') {
+						costArr.push(item.value);
+					}
+					console.log(nameArr, qtyArr, costArr);
+					for (let i = 0; i < nameArr.length; i++) {
+						jsonArr[i] = new JSON(nameArr[i], qtyArr[i], costArr[i]);
+					}
+				});
+				console.log(jsonArr);
+			});
+			// document.write(jsonArr);
+		});
+		// $(function () {
+		// 	$('table').on('click', '.addBtn', function () {
+		// 		$(`<tr class="items">
+		// 		<td><input type="text" name="productName" /></td>
+		// 		<td><input type="text" name="productQty" /></td>
+		// 		<td><input type="text" name="productCost" /></td>
+		// 		<td><button class="addBtn">+</button></td>
+		// 		<td><button class="remBtn">-</button></td>
+		// 	</tr>`)
+		// 			.clone(true)
+		// 			.insertAfter($(this).parent().parent());
+		// 		// console.log('.addBtn');
+
+		// 		// console.log($('input')[0].name);
+		// 	});
+		// 	$('.remBtn').on('click', function () {
+		// 		$($(this).parent().parent()).remove('tr');
+		// 	});
+		// });
+	</script>
+	<body>
+		<table border="1">
+			<tr>
+				<th>상품명</th>
+				<th>수량</th>
+				<th>가격</th>
+				<th>추가</th>
+				<th>삭제</th>
+			</tr>
+			<tr class="items">
+				<td><input type="text" name="productName" /></td>
+				<td><input type="text" name="productQty" /></td>
+				<td><input type="text" name="productCost" /></td>
+				<td><button class="addBtn">+</button></td>
+				<td><button class="remBtn">-</button></td>
+			</tr>
+		</table>
+		<div class="submit">
+			<button id="submit" type="submit">전송</button>
+		</div>
+	</body>
+</html>

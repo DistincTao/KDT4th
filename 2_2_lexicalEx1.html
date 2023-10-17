@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lexical Environment</title>
+		<script>
+			let x = 1;
+
+			function a() {
+				let x = 10;
+				b();
+
+				function c() {
+					console.log(x); // 10 | 함수 내에서 정의된 함수는 선언된 함수의 내부에서는 호출 가능
+				}
+				c(); // 호출 가능
+			}
+
+			function b() {
+				console.log(x);
+				c(); // => 호출 안됨 | not defined
+			}
+
+			a(); // 1
+			b(); // 1
+		</script>
+	</head>
+	<body></body>
+</html>

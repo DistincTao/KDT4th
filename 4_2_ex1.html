@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<title>Document</title>
+		<script>
+			let json = [
+				{
+					brandName: 'kia',
+					carName: 'k8',
+					color: 'white',
+					carImg: 'img/ford_F_150.jpg',
+					description: '기아에서 출시한 전륜구동 기반의 준대형 세단',
+				},
+				{
+					brandName: 'Volvo',
+					carName: 'xc-90',
+					color: 'gray',
+					carImg: '',
+					description: '스웨덴 자동차 브랜드인 볼보에서 생산하는 중형 SUV',
+				},
+				{
+					brandName: 'hyundai',
+					carName: 'genesis',
+					color: 'gray',
+
+					description: ' 현대의 자존심',
+				},
+			];
+
+			console.log(json);
+			console.log(typeof json);
+			// console.log(JSON.stringify(json));
+			console.log(json[2].carName);
+
+			// $(function () {
+			// let output = `<table class="table table-bordered"><thead><tr><td>이미지</td><td>브랜드</td><td>차명</td><td>색상</td><td>설명</td></tr></thead><tbody>`;
+			// // 테이블 형식으로 화면에 출력을 해보자
+			// // 만약 이미지가 없다면, noimage.png로 대체해서 출력한다.
+			// $.each(json, function (i, item) {
+			// 	// console.log(`${item.brandName}`);
+			// 	output += `<tr>`;
+			//     // 이미지가 없는 경우 | ""; or undefined
+			//     if (item.carImg == "" || item.carImg == undefined) {
+			//       output += `<td><img src="img/noimage.png"></td>`
+			//     } else { // 이미지가 있는 경우
+			//       output += `<td><img src=${item.carImg}></td>`
+			//     }
+			//     output += `<td>${item.brandName}</td><td>${item.carName}</td><td>${item.color}</td><td>${item.description}</td></tr>`;
+			// });
+
+			// output += `</tbody></table>`;
+			// $("#tableCatalog").html(output);
+			// $("img").css("width", "200px")
+
+			let output = `<div class="card" style="width:400px">`;
+			$(function () {
+				$.each(json, function (i, item) {
+					output += `<div class="card-body"><h4 class="card-title">${item.carName}</h4>`;
+					if (item.carImg == '' || item.carImg == undefined) {
+						output += `<img class="card-img-top" src="img/noimage.png"  style="width:100%">`;
+					} else {
+						output += `<img class="card-img-top" src="${item.carImg}"  style="width:100%">`;
+					}
+					output += `<p class="card-text">${item.brandName}</p><p class="card-text">${item.description}</p></div>`;
+					$('.cardCatalog').html(output);
+				});
+			});
+			output += `</div>`;
+			$('img').css('width', '100px');
+			$('.cardCatalog').children().css('display', 'flex');
+		</script>
+		<style></style>
+	</head>
+	<body>
+		<div class="container mt-3">
+			<h2>차량 소개</h2>
+			<div id="tableCatalog"></div>
+			<div class="cardCatalog"></div>
+		</div>
+	</body>
+</html>
