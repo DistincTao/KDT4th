@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>jQuery를 이용하여 동적으로 행을 추가, 삭제 하는 테이블 만들기</title>
 		<script src="js/jquery-3.7.1.min.js"></script>
+		<script src="js/common.js"></script>
 	</head>
 	<script>
 		$(function () {
@@ -31,10 +32,12 @@
 				});
 			}
 
-			function JSON(productName, productQty, productCost) {
-				this.productName = productName;
-				this.productQty = productQty;
-				this.productCost = productCost;
+			class MARKET { // JSON 이름으로 객체 생성시 오류 발생
+				constructor(productName, productQty, productCost) {
+					this.productName = productName;
+					this.productQty = productQty;
+					this.productCost = productCost;
+				}
 			}
 
 			let jsonArr = [];
@@ -54,12 +57,15 @@
 					if (item.name == 'productCost') {
 						costArr.push(item.value);
 					}
-					console.log(nameArr, qtyArr, costArr);
+					// console.log(nameArr, qtyArr, costArr);
 					for (let i = 0; i < nameArr.length; i++) {
-						jsonArr[i] = new JSON(nameArr[i], qtyArr[i], costArr[i]);
+						jsonArr[i] = new MARKET(nameArr[i], qtyArr[i], costArr[i]);
 					}
 				});
-				console.log(jsonArr);
+				console.log(typeof jsonArr);
+				let json = JSON.stringify(jsonArr, null, 4);
+				console.log(json);
+				$('.print').html(json);
 			});
 			// document.write(jsonArr);
 		});
@@ -103,5 +109,6 @@
 		<div class="submit">
 			<button id="submit" type="submit">전송</button>
 		</div>
+		<div class="print"></div>
 	</body>
 </html>

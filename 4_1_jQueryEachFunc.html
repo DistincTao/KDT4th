@@ -4,22 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="js/jquery-3.7.1.min.js"></script>
-		<title>jQuery으 each 함수</title>
+		<title>jQuery의 each 함수</title>
 		<script>
 			// vanilla 자바스크립트의 forEach()와 같으나 활용도는 높다
-			// let ar = [3, 5, 7, 8, 9, 10];
+			let ar = [3, 5, 7, 8, 9, 10];
 
-			// for (let i = 0; i < ar.length; i++) {
-			// 	console.log(ar[i]);
-			// }
+			for (let i = 0; i < ar.length; i++) {
+				console.log(ar[i]);
+			}
 
-			// document.write('<ul>');
-			// $.each(ar, function (i, e) {
-			// 	// i: index | e: value
-			// 	console.log(`${i}번째 요소는 : ${e} 입니다.`);
-			// 	document.write(`<li>${i}번째 요소는 : ${e} 입니다.</li>`);
-			// });
-			// document.write('</ul>');
+			document.write('<ul>');
+			$.each(ar, function (i, e) {
+				// i: index | e: value
+				console.log(`${i}번째 요소는 : ${e} 입니다.`);
+				document.write(`<li>${i}번째 요소는 : ${e} 입니다.</li>`);
+			});
+			document.write('</ul>');
 
 			$(function () {
 				$('li').each(function (i, e) {
@@ -30,7 +30,6 @@
 			});
 
 			//
-			$('');
 		</script>
 	</head>
 	<body>
