@@ -20,6 +20,7 @@
 
 			$('table').on('click', '.remBtn', function () {
 				if ($('tr').length > 2) {
+					// 행이 2개 남았을 때 더이상 지워지지 않게 설정
 					$(this).parent().parent().remove();
 				} else {
 					alert('삭제 그만!');
@@ -27,16 +28,64 @@
 			});
 
 			function clearContent(tdArr) {
+				// clone() 사용 시 내용까지 복사 되는 것에 대하여 내용들을 지워줌
 				$.each(tdArr, function (index, item) {
 					$(item).children().val('');
 				});
 			}
+			// 1) 수업 시간  - 1
+			// $('#submit').click(function () {
+			// 	let data = new Array();
 
-			class MARKET { // JSON 이름으로 객체 생성시 오류 발생
-				constructor(productName, productQty, productCost) {
-					this.productName = productName;
-					this.productQty = productQty;
-					this.productCost = productCost;
+			// 	$('tr').each(function (index, elem) {
+			// 		let product = new Object();
+			// 		if (index > 0) {
+			// 			let productName = $(elem).children().eq(0).children().val();
+			// 			let productQty = $(elem).children().eq(1).children().val();
+			// 			let productCost = $(elem).children().eq(2).children().val();
+
+			// 			product.productName = productName;
+			// 			product.productQty = productQty;
+			// 			product.productCost = productCost;
+
+			// 			data.push(product);
+			// 		}
+			// 	});
+			// 	console.log(data);
+			// });
+
+			// 2) 수업 시간 - 2
+			// $('#submit').click(function () {
+			// 	let data = new Array();
+			// 	$('tr').each(function (index, elem) {
+			// 		let product = new Object();
+
+			// 		if (index > 0) {
+			// 			$(elem)
+			// 				.children()
+			// 				.each(function (ind, inputTd) {
+			// 					if (ind < 3) {
+			// 						product[$(inputTd).children().attr('name')] = $(inputTd)
+			// 							.children()
+			// 							.val();
+			// 					}
+			// 				});
+			// 			console.log(product);
+			// 			data.push(product);
+			// 		}
+			// 	});
+			// 	console.log(data);
+			// 	$('textarea').html(JSON.stringify(data, null, 2));
+			// });
+
+			//내가 짠 코드
+			class Market {
+				// JSON 이름으로 객체 생성시 오류 발생
+				constructor(name, qty, cost) {
+					this.productName = name;
+					this.productQty = Number(qty);
+					this.productCost = Number(cost);
+					this.productTotal = this.productQty * this.productCost;
 				}
 			}
 
@@ -59,16 +108,18 @@
 					}
 					// console.log(nameArr, qtyArr, costArr);
 					for (let i = 0; i < nameArr.length; i++) {
-						jsonArr[i] = new MARKET(nameArr[i], qtyArr[i], costArr[i]);
+						jsonArr[i] = new Market(nameArr[i], qtyArr[i], costArr[i]);
 					}
 				});
 				console.log(typeof jsonArr);
-				let json = JSON.stringify(jsonArr, null, 4);
+				let json = JSON.stringify(jsonArr, null, 2);
 				console.log(json);
 				$('.print').html(json);
 			});
 			// document.write(jsonArr);
+			$('textarea').css({ width: '300px', height: '300px' });
 		});
+
 		// $(function () {
 		// 	$('table').on('click', '.addBtn', function () {
 		// 		$(`<tr class="items">
@@ -87,6 +138,12 @@
 		// 	$('.remBtn').on('click', function () {
 		// 		$($(this).parent().parent()).remove('tr');
 		// 	});
+
+		// function clearContent(tdArr) {
+		// 	$.each(tdArr, function (index, item) {
+		// 		$(item).children().val('');
+		// 	});
+		// }
 		// });
 	</script>
 	<body>
@@ -99,9 +156,9 @@
 				<th>삭제</th>
 			</tr>
 			<tr class="items">
-				<td><input type="text" name="productName" /></td>
-				<td><input type="text" name="productQty" /></td>
-				<td><input type="text" name="productCost" /></td>
+				<td><input type="text" name="productName" value="새우깡" /></td>
+				<td><input type="text" name="productQty" value="3" /></td>
+				<td><input type="text" name="productCost" value="3" /></td>
 				<td><button class="addBtn">+</button></td>
 				<td><button class="remBtn">-</button></td>
 			</tr>
@@ -109,6 +166,7 @@
 		<div class="submit">
 			<button id="submit" type="submit">전송</button>
 		</div>
-		<div class="print"></div>
+		<hr />
+		<textarea class="print"></textarea>
 	</body>
 </html>

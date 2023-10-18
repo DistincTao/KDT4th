@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div></div>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div></div>
+		<script>
+			$.ajax({
+				method: 'GET',
+				url: 'https://gateway.marvel.com:443/v1/public/characters?apikey=ddbf35e9e54bc6610ccc1302ba56b081&hash=e8897a82a4842be3cdd3677f63d48c21a406e688',
+				data: { query: 'Spider-Man' },
+				'Content-Type': 'application/json; charset=utf-8',
+				Date: 'Wed, 18 Oct 2023 00:14:22 GMT',
+			}).done(function (msg) {
+				console.log(msg);
+			});
+		</script>
+	</body>
 </html>
